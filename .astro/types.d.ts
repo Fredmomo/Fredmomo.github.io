@@ -208,6 +208,13 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "store": {
+"item1.md": {
+	id: "item1.md";
+  slug: "item1";
+  body: string;
+  collection: "store";
+  data: InferEntrySchema<"store">
+} & { render(): Render[".md"] };
 };
 
 	};
