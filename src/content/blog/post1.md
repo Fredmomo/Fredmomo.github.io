@@ -1,56 +1,104 @@
 ---
-title: "Demo Post 1"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-pubDate: "Sep 10 2022"
+title: "Load Testing Walkthrough I - Introduction"
+description: "Basic idea and common setups about loadtest will be discussed in this post."
+pubDate: "Mar 28 2024"
 heroImage: "/post_img.webp"
-tags: ["tokio"]
+tags: ["load_testing"]
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer
-malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas
-pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse
-platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada
-fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea
-dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst
-quisque sagittis purus sit amet.
+# What is Load Testing
+Load Testing is always playing an important role in various testing methods for systems and services, espeically those accepting multiple concurrent connections with requests or data stream sending. And it's about adding load using some tools to the target systems or services to dentermine their scalability and reliability, behaviour to respond, fault tolerance etc to see if they are good enough for production use, if there's any more improvement that could be done, and if any critical errors will occur during peak load. Based on the load, load testing sometime could also be categorized as performance testing, endurance testing and stress testing, which the level of the load that's added to the target goes from normal to extreme.
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum
-quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet.
-Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus.
-Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit
-ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt
-dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus
-arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed
-tempus urna et pharetra pharetra massa massa ultricies mi.
+# How to Start Load Testing
+**1. Define your objectives**
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam
-sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec.
-Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna
-fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et
-egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel
-turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra
-nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim
-praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus
-egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam
-ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor
-purus non. Amet dictum sit amet justo donec enim.
+*1.1.* What target system are you testing?
+ 
+|target system| testing target | 
+|--------------|----------------|
+|database system|
+|caching system|
+|microservices|
+|networking system|
+|hardware(CPU/GPU/Disk)|
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut
-consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra.
-Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor
-dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor
-dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque
-eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices
-tincidunt arcu. Id cursus metus aliquam eleifend mi.
+*1.2* What goals do you want to achieve?
+Oftemtimes before running a loadtest, we will find one or more goals, the common ones are:
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus
-imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu
-cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt
-dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat
-sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida.
-Egestas integer eget aliquet nibh praesent tristique magna.
+1. Service Reliability
+
+* Need to ensure at a target number of CCU or at a target maximum rate of connections of requests, only a permissible percent of errors are occuring.
+
+* Need to ensure at a target number of CCU or at a target maximum rate of connections of requestsall critical services and features are functioning properly (as desgined).
+ 
+2. Service Availability
+
+* Need to ensure at a target number of CCU or at a target maximum rate of connections of requests, all or a group of services need to be available for use for a target percent of time period.
+
+3. Service Scalability
+
+* When the CCU or request/connection rate grows, the load on each service instance would be higher and higher, which in metrics is usaully about higher CPU or memory consumption, or higher disk usage if it's for heavy data storage services, more instances need to be added to scale the service up, when scaling up, service reliability and availability need to be ensured. And vice versa with service downscaling.
+
+4. Service Fault Tolerance
+
+* Need to ensure at a target number of CCU or at a target maximum rate of connections of requests, the ratio of critical errors are happening with a low probability lower than a tolerable target number, and the system keeps fucntioning. In a microservice system, some crashes in a microservice cannot lead to sever fault for that service and cannot transmit to other microservice or causing any avalanche.
+
+5. Service Resilence
+
+* Need to ensure at a rapid load changes on the system, it's being able to either adapt to the different load or recover from any crashes rapidly within a allowable time period, and with a tolerable number of data loss. 
+
+6. Service Security
+
+* Need to ensure at a large scale DDoS(Distributed Denial-of-Service) attack, the system is capable to detect, prevent and handle it without impacting the major services.
+
+Based on the system under test (SUT), you can choose different targets to focus on, for some financial services, usually service scalability, sercurity and fault tolerance are the main goals to chase, any errors in the services cannot lead to a fault transaction that causes financial loss, service reliability, resilience is also preferred along with availability.
+ 
+*1.3* How to quantify the testing?
+
+* load testing settings
+
+settings for agents/bots:
+
+| category | example |
+|-----------|---------|
+|number| how many load test agents/bots are created? |
+|frequency| how many requests/connections per sec could one agent/bot send to different endpoints?|
+|longevity| how long dose the load test plan to run? |
+|load distribution| what percentage of load distribution are given to different nodes/services? |
+|change rate| what's the increase/decrease rate of numbers of agents/bots?|
+
+settings for the SUT:
+
+| category | example |
+|-----------|---------|
+|number| how many nodes are there for testing? Is it auto-scaled? |
+|CPU | what's the CPU settings for each node? How many cores are there and if all the cores are going to be used (for paralleling?)? |
+|memory | how many memory are assigned for each nodes? |
+|disk| how many disk storage are used? |
+|system| what operating system is used? |
+|other hardware|what network adapter/graphics card is used?|
+
+* load testing goals
+
+under the prime load/a time period's load/target CCU number,
+
+| category | example |
+|-----------|---------|
+|cpu| all the nodes' cpu usage should be lower than 70% |
+|memory| all the nodes' memory usage should be lower than 80%|
+|disk| all the disk usages should be lower than 80%|
+|time| all the response time should be shorter than 500ms|
+|critical error rate| error rate should be lower than 10%, critical error rate should be lower than 1% |
+| service downtime | service downtime should be lower than 0.1% |
+
+* load testing metrics
+
+Besides the above goals, other metrics worth checking
+
+|category|example|
+|-----------|---------|
+|network|byte in/out, latency and jitter, packet loss, retransmission rate etc.|
+|non-critical error rate|timeout error, bad request error etc.|
+|load balancing | load distributions on services and proxies |
+|database | read/write rate, disk I/O, query latencies etc.|
+|other statistical metrics | other metrics for user behaviour analysis |
