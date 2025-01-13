@@ -2,7 +2,7 @@
 title: "Load Testing Walkthrough I - Introduction"
 description: "Basic idea and common setups about loadtest will be discussed in this post."
 pubDate: "Mar 28 2024"
-heroImage: "/post_img.webp"
+heroImage: "/loadtest.png"
 tags: ["load_testing"]
 ---
 
@@ -14,8 +14,8 @@ Load Testing is always playing an important role in various testing methods for 
 
 *1.1.* What target system are you testing?
  
-|target system| testing target | 
-|--------------|----------------|
+|target system| 
+|--------------|
 |database system|
 |caching system|
 |microservices|
