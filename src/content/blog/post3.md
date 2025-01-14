@@ -3,7 +3,6 @@ title: "Graph and Related Leetcode Problems"
 description: "This post lists common algorithms about graph and some examples to practise."
 pubDate: "Jan 12 2025"
 heroImage: "/post_img.webp"
-badge: "Demo badge"
 tags: ["Leetcode","Graph"]
 ---
 
@@ -25,7 +24,7 @@ The time complexity for a traverse is _O(V+E)_.
 
 Examples of BFS and queue:
 
-1. [Bus Route] (https://leetcode.com/problems/bus-routes/description/)
+1. [Bus Route](https://leetcode.com/problems/bus-routes/description/)
 2. [Open the Lock](https://leetcode.com/problems/open-the-lock/description/)
 3. [Sliding Puzzle](https://leetcode.com/problems/sliding-puzzle/description/)
 4. [Word Ladder](https://leetcode.com/problems/word-ladder/description/)

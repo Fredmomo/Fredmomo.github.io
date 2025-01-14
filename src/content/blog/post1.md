@@ -2,7 +2,7 @@
 title: "Load Testing Walkthrough I - Introduction"
 description: "Basic idea and common setups about loadtest will be discussed in this post."
 pubDate: "Mar 28 2024"
-heroImage: "/loadtest.png"
+heroImage: "/loadtest.webp"
 tags: ["load_testing"]
 ---
 
