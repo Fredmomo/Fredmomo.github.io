@@ -1,10 +1,11 @@
 ---
 title: "Dynamic Programming and Related Leetcode Problems"
 description: "."
-pubDate: "Tue 14 2025"
+pubDate: "Jan 14 2025"
 heroImage: "/Fibonacci.png"
 tags: ["Leetcode"]
 ---
+
 # Dynamic Programming
 
 Core concepts:
