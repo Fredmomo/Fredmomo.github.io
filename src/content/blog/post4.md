@@ -27,6 +27,11 @@ In summary, the basic procedures to tackle such problem are as follows:
 2. Define option list, which lead to state transfer.
 3. Using _dp_ to define state transfer equation using mathematical induction.
 
+Generally two common approach for iteration would be:
+
+1. Top-down approach with recurrsion, remember to use an array `memo` to memorize along the way (`if memo[i] != special_value; return memo[i]`).
+2. Bottom-up approach with iteration, this way is to build up the dp array from the base case.
+
 To be noted that usually 2d dp table couples with bottom-up iteration, memoization array couples with top-down recurssion.
 
 Some related Leetcode problems:
@@ -46,4 +51,8 @@ For _rabbbit_ and _rabit_ when i=j=0 we have two options (similar to backtrack),
 5.[Word Break](https://leetcode.com/problems/word-break/description/): Though it's not about getting a max/min value, but it's still about overlapping subproblems, we can use boolean dp array for memoization.
 
 6.[Edit Distance](https://leetcode.com/problems/edit-distance/description/): Similar string related issue, we still use index i, j to iterate through the two strings from end to start, then dp[i][j] should be the smallest edit distance of word1[0:i] and word2[0:j], we move the index to the top to minimize the issue. 
+
+7. [Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/description/): this problem is quite obvious to get the state transfer function and use dp to solve. (Could also use Dijkstra to solve it, but it's less efficient due to the use of PriorityQueue)
+
+8. [Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/description/): using dp to solve this issue could reach _O(n*m)_ time complexity, which is better than other methods.
 
